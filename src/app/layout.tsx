@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+
 //import { Geist, Geist_Mono } from "next/font/google";
 import "./styles/globals.scss";
 import Icon from "../assests/svg/log-ico.svg"

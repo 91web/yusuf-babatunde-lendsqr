@@ -81,7 +81,7 @@ export default function LoginForm() {
         {message && <p className={styles.message}>{message}</p>}
 
         <p className={styles.registerLink}>
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/register" className={styles.registerLinkText}>
             Register here
           </Link>
