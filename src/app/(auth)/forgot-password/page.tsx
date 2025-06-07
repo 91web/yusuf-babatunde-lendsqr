@@ -3,6 +3,13 @@ import { useState } from "react";
 import bcrypt from "bcryptjs";
 import styles from "../../styles/registration.module.scss";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
 
 type User = {
   id: string;
@@ -18,33 +25,49 @@ export default function ForgotPasswordForm() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [message, setMessage] = useState("");
   const [step, setStep] = useState<"email" | "reset">("email");
+  const [dialog, setDialog] = useState({
+    open: false,
+    title: "",
+    message: "",
+    redirect: "",
+  });
+  const router = useRouter();
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Check if user exists in localStorage (simulating database check)
-    const usersJson = localStorage.getItem("currentUser");
-    if (!usersJson) {
-      setMessage("No user found with this email");
+    // Check if user exists in localStorage users array
+    const storedUsers = localStorage.getItem("users");
+    const users: User[] = storedUsers ? JSON.parse(storedUsers) : [];
+
+    const user = users.find(
+      (u) => u.email.toLowerCase() === email.toLowerCase()
+    );
+
+    if (!user) {
+      setDialog({
+        open: true,
+        title: "Account Not Found",
+        message: "No user found with this email address",
+        redirect: "",
+      });
       return;
     }
 
-    const user: User = JSON.parse(usersJson);
-    if (user.email === email) {
-      setStep("reset");
-      setMessage("");
-    } else {
-      setMessage("No user found with this email");
-    }
+    setStep("reset");
   };
 
   const handleResetSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (newPassword !== confirmPassword) {
-      setMessage("Passwords don't match");
+      setDialog({
+        open: true,
+        title: "Password Mismatch",
+        message: "Passwords don't match",
+        redirect: "",
+      });
       return;
     }
 
@@ -52,20 +75,63 @@ export default function ForgotPasswordForm() {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(newPassword, salt);
 
-      // Update user's password in localStorage
-      const usersJson = localStorage.getItem("currentUser");
-      if (usersJson) {
-        const user: User = JSON.parse(usersJson);
-        user.password = hashedPassword;
-        localStorage.setItem("currentUser", JSON.stringify(user));
-        setMessage("Password reset successfully!");
+      // Update user's password in localStorage users array
+      const storedUsers = localStorage.getItem("users");
+      const users: User[] = storedUsers ? JSON.parse(storedUsers) : [];
+
+      const updatedUsers = users.map((user) => {
+        if (user.email.toLowerCase() === email.toLowerCase()) {
+          return { ...user, password: hashedPassword };
+        }
+        return user;
+      });
+
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+      // Also update currentUser if it's the same user
+      const currentUser = localStorage.getItem("currentUser");
+      if (currentUser) {
+        const parsedUser: User = JSON.parse(currentUser);
+        if (parsedUser.email.toLowerCase() === email.toLowerCase()) {
+          localStorage.setItem(
+            "currentUser",
+            JSON.stringify({
+              ...parsedUser,
+              password: hashedPassword,
+            })
+          );
+        }
+      }
+
+      setDialog({
+        open: true,
+        title: "Success",
+        message:
+          "Password reset successfully! You will now be redirected to login.",
+        redirect: "/login",
+      });
+    } catch (error) {
+      setDialog({
+        open: true,
+        title: "Error",
+        message: "Password reset failed. Please try again.",
+        redirect: "",
+      });
+      console.error("Password reset error:", error);
+    }
+  };
+
+  const handleCloseDialog = () => {
+    setDialog((prev) => ({ ...prev, open: false }));
+    if (dialog.redirect) {
+      router.push(dialog.redirect);
+      // Reset form if redirecting
+      if (dialog.redirect === "/login") {
         setStep("email");
+        setEmail("");
         setNewPassword("");
         setConfirmPassword("");
       }
-    } catch (error) {
-      setMessage("Password reset failed");
-      console.error(error);
     }
   };
 
@@ -74,14 +140,13 @@ export default function ForgotPasswordForm() {
       {step === "email" ? (
         <form onSubmit={handleEmailSubmit} className={styles.form}>
           <h1 className={styles.color}>Reset Password</h1>
-
           <p>Enter your email to reset your password</p>
 
           <input
             type="email"
             name="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value.toLowerCase())}
             placeholder="Email"
             required
           />
@@ -89,8 +154,6 @@ export default function ForgotPasswordForm() {
           <button type="submit" className={styles.submitButton}>
             Continue
           </button>
-
-          {message && <p className={styles.message}>{message}</p>}
 
           <p className={styles.loginLink}>
             Remember your password?{" "}
@@ -135,13 +198,11 @@ export default function ForgotPasswordForm() {
             Reset Password
           </button>
 
-          {message && <p className={styles.message}>{message}</p>}
-
           <button
             type="button"
             onClick={() => {
               setStep("email");
-              setMessage("");
+              setEmail("");
             }}
             className={styles.loginLinkText}
           >
@@ -149,6 +210,26 @@ export default function ForgotPasswordForm() {
           </button>
         </form>
       )}
+
+      {/* Unified Dialog for all notifications */}
+      <Dialog
+        open={dialog.open}
+        onClose={handleCloseDialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{dialog.title}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {dialog.message}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} autoFocus>
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
