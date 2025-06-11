@@ -1,0 +1,568 @@
+import Icon1 from "../../../assests/svg/icon2.svg";
+import Icon2 from "../../../assests/svg/icon3.svg";
+import Icon3 from "../../../assests/svg/icon4.svg";
+import Icon4 from "../../../assests/svg/icon5.svg";
+import Icon5 from "../../../assests/svg/icon6.svg";
+import Icon6 from "../../../assests/svg/icon7.svg";
+import Icon7 from "../../../assests/svg/icon8.svg";
+import Icon8 from "../../../assests/svg/icon9.svg";
+import Icon9 from "../../../assests/svg/icon10.svg";
+import Icon10 from "../../../assests/svg/icon11.svg";
+import Icon11 from "../../../assests/svg/icon12.svg";
+import Icon12 from "../../../assests/svg/icon13.svg";
+import Icon13 from "../../../assests/svg/icon14.svg";
+import Icon14 from "../../../assests/svg/icon15.svg";
+import Icon15 from "../../../assests/svg/icon16.svg";
+import Icon16 from "../../../assests/svg/icon17.svg";
+import Icon17 from "../../../assests/svg/icon18.svg";
+import Icon18 from "../../../assests/svg/icon19.svg";
+import Icon19 from "../../../assests/svg/icon20.svg";
+import Icon20 from "../../../assests/svg/icon21.svg";
+// components/Sidebar/sidebarData.ts
+export interface SidebarItem {
+  label: string;
+  path: string;
+  icon: string;
+  active?: boolean;
+}
+
+export interface SidebarSection {
+  title?: string;
+  items: SidebarItem[];
+}
+
+export const sidebarData: SidebarSection[] = [
+  {
+    items: [
+      {
+        label: "Dashboard",
+        path: "/dashboard",
+        icon: Icon2.src,
+        active: true,
+      },
+    ],
+  },
+  {
+    title: "CUSTOMERS",
+    items: [
+      { label: "Users", path: "/customers/users", icon: Icon3.src },
+      { label: "Guarantors", path: "/customers/guarantors", icon: Icon4.src },
+      { label: "Loans", path: "/customers/loans", icon: Icon5.src },
+      {
+        label: "Decision Models",
+        path: "/customers/decision-models",
+        icon: Icon6.src,
+      },
+      { label: "Savings", path: "/customers/savings", icon: Icon7.src },
+      {
+        label: "Loan Requests",
+        path: "/customers/loan-requests",
+        icon: Icon8.src,
+      },
+      { label: "Whitelist", path: "/customers/whitelist", icon: Icon9.src },
+      { label: "Karma", path: "/customers/karma", icon: Icon10.src },
+    ],
+  },
+  {
+    title: "BUSINESSES",
+    items: [
+      {
+        label: "Organization",
+        path: "/businesses/organization",
+        icon: Icon11.src,
+      },
+      {
+        label: "Loan Products",
+        path: "/businesses/loan-products",
+        icon: Icon12.src,
+      },
+      {
+        label: "Savings Products",
+        path: "/businesses/savings-products",
+        icon: Icon13.src,
+      },
+      {
+        label: "Fees and Charges",
+        path: "/businesses/fees-charges",
+        icon: Icon14.src,
+      },
+      {
+        label: "Transactions",
+        path: "/businesses/transactions",
+        icon: Icon15.src,
+      },
+      { label: "Services", path: "/businesses/services", icon: Icon1.src },
+      {
+        label: "Service Account",
+        path: "/businesses/service-account",
+        icon: Icon16.src,
+      },
+      {
+        label: "Settlements",
+        path: "/businesses/settlements",
+        icon: Icon17.src,
+      },
+      { label: "Reports", path: "/businesses/reports", icon: Icon18.src },
+    ],
+  },
+  {
+    title: "SETTINGS",
+    items: [
+      { label: "Preferences", path: "/settings/preferences", icon: Icon19.src },
+      {
+        label: "Fees and Pricing",
+        path: "/settings/fees-pricing",
+        icon: Icon20.src,
+      },
+      { label: "Audit Logs", path: "/settings/audit-logs", icon: Icon20.src },
+    ],
+  },
+];
+
+// user Table Data
+export interface UserType {
+  id: number;
+  organization: string;
+  username: string;
+  email: string;
+  phoneNumber: string;
+  dateJoined: string;
+  status: "Active" | "Inactive" | "Pending" | "Blacklisted";
+  hasLoan: boolean;
+  hasSavings: boolean;
+}
+
+
+
+
+export const UsersData: UserType[] = [
+  {
+    id: 1,
+    organization: "Lendsqr",
+    username: "Adedeji",
+    email: "adedeji@lendsqr.com",
+    phoneNumber: "08078903721",
+    dateJoined: "2020-05-15T10:00:00",
+    status: "Inactive",
+    hasLoan: true,
+    hasSavings: true,
+  },
+  {
+    id: 2,
+    organization: "Irorun",
+    username: "Debby Ogana",
+    email: "debby2@irorun.com",
+    phoneNumber: "08160780928",
+    dateJoined: "2020-04-30T10:00:00",
+    status: "Pending",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 3,
+    organization: "Lendstar",
+    username: "Grace Effiom",
+    email: "grace@lendstar.com",
+    phoneNumber: "07060780922",
+    dateJoined: "2020-04-30T10:00:00",
+    status: "Blacklisted",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 4,
+    organization: "Lendsqr",
+    username: "Tosin Dokunmu",
+    email: "tosin@lendsqr.com",
+    phoneNumber: "07003309226",
+    dateJoined: "2020-04-10T10:00:00",
+    status: "Pending",
+    hasLoan: true,
+    hasSavings: true,
+  },
+  {
+    id: 5,
+    organization: "Lendstar",
+    username: "Grace Effiom",
+    email: "grace@lendstar.com",
+    phoneNumber: "07060780922",
+    dateJoined: "2020-04-30T10:00:00",
+    status: "Active",
+    hasLoan: true,
+    hasSavings: true,
+  },
+  {
+    id: 6,
+    organization: "Lendsqr",
+    username: "Tosin Dokunmu",
+    email: "tosin@lendsqr.com",
+    phoneNumber: "08060780900",
+    dateJoined: "2020-04-10T10:00:00",
+    status: "Active",
+    hasLoan: true,
+    hasSavings: true,
+  },
+  {
+    id: 7,
+    organization: "Lendstar",
+    username: "Grace Effiom",
+    email: "grace@lendstar.com",
+    phoneNumber: "07060780922",
+    dateJoined: "2020-04-30T10:00:00",
+    status: "Blacklisted",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 8,
+    organization: "Lendsqr",
+    username: "Tosin Dokunmu",
+    email: "tosin@lendsqr.com",
+    phoneNumber: "08060780900",
+    dateJoined: "2020-04-10T10:00:00",
+    status: "Inactive",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 9,
+    organization: "Lendstar",
+    username: "Grace Effiom",
+    email: "grace@lendstar.com",
+    phoneNumber: "07060780922",
+    dateJoined: "2020-04-30T10:00:00",
+    status: "Inactive",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 10,
+    organization: "FinBank",
+    username: "Samuel John",
+    email: "samuel@finbank.com",
+    phoneNumber: "08134567890",
+    dateJoined: "2020-03-12T10:00:00",
+    status: "Pending",
+    hasLoan: true,
+    hasSavings: false,
+  },
+  {
+    id: 11,
+    organization: "Lendsqr",
+    username: "Adedeji Ajoke",
+    email: "adedeji@lendsqr.com",
+    phoneNumber: "08078903721",
+    dateJoined: "May 15, 2020 10:00 AM",
+    status: "Inactive",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 12,
+    organization: "Irorun",
+    username: "Debby Ogana",
+    email: "debby2@irorun.com",
+    phoneNumber: "08160780928",
+    dateJoined: "Apr 30, 2020 10:00 AM",
+    status: "Pending",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 13,
+    organization: "Lendsqr",
+    username: "Grace Effiom",
+    email: "grace@lendsqr.com",
+    phoneNumber: "07060780922",
+    dateJoined: "Apr 30, 2020 10:00 AM",
+    status: "Blacklisted",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 14,
+    organization: "Lendsqr",
+    username: "Tosin Dokunmu",
+    email: "tosin@lendsqr.com",
+    phoneNumber: "07003309226",
+    dateJoined: "Apr 10, 2020 10:00 AM",
+    status: "Pending",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 15,
+    organization: "Lendsqr",
+    username: "Grace Effiom",
+    email: "grace@lendsqr.com",
+    phoneNumber: "07060780922",
+    dateJoined: "Apr 30, 2020 10:00 AM",
+    status: "Active",
+    hasLoan: true,
+    hasSavings: true,
+  },
+  {
+    id: 16,
+    organization: "Lendsqr",
+    username: "Tosin Dokunmu",
+    email: "tosin@lendsqr.com",
+    phoneNumber: "08060780900",
+    dateJoined: "Apr 10, 2020 10:30 AM",
+    status: "Active",
+    hasLoan: true,
+    hasSavings: true,
+  },
+  {
+    id: 17,
+    organization: "Lendsqr",
+    username: "Grace Effiom",
+    email: "grace@lendsqr.com",
+    phoneNumber: "07060780922",
+    dateJoined: "Apr 30, 2020 10:00 AM",
+    status: "Blacklisted",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 18,
+    organization: "Lendsqr",
+    username: "Tosin Dokunmu",
+    email: "tosin@lendsqr.com",
+    phoneNumber: "08060780900",
+    dateJoined: "Apr 10, 2020 10:00 AM",
+    status: "Inactive",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 19,
+    organization: "Lendsqr",
+    username: "Grace Effiom",
+    email: "grace@lendsqr.com",
+    phoneNumber: "07060780922",
+    dateJoined: "Apr 30, 2020 10:00 AM",
+    status: "Inactive",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 20,
+    organization: "Lendsqr",
+    username: "Grace Effiom",
+    email: "grace@lendsqr.com",
+    phoneNumber: "07060780922",
+    dateJoined: "Apr 30, 2020 10:00 AM",
+    status: "Inactive",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 21,
+    organization: "Lendsqr",
+    username: "Adedeji",
+    email: "adedeji@lendsqr.com",
+    phoneNumber: "08078903721",
+    dateJoined: "2020-05-15T10:00:00",
+    status: "Inactive",
+    hasLoan: true,
+    hasSavings: true,
+  },
+  {
+    id: 22,
+    organization: "Irorun",
+    username: "Debby Ogana",
+    email: "debby2@irorun.com",
+    phoneNumber: "08160780928",
+    dateJoined: "2020-04-30T10:00:00",
+    status: "Pending",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 23,
+    organization: "Lendstar",
+    username: "Grace Effiom",
+    email: "grace@lendstar.com",
+    phoneNumber: "07060780922",
+    dateJoined: "2020-04-30T10:00:00",
+    status: "Blacklisted",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 24,
+    organization: "Lendsqr",
+    username: "Tosin Dokunmu",
+    email: "tosin@lendsqr.com",
+    phoneNumber: "07003309226",
+    dateJoined: "2020-04-10T10:00:00",
+    status: "Pending",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 25,
+    organization: "Lendstar",
+    username: "Grace Effiom",
+    email: "grace@lendstar.com",
+    phoneNumber: "07060780922",
+    dateJoined: "2020-04-30T10:00:00",
+    status: "Active",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 26,
+    organization: "Lendsqr",
+    username: "Tosin Dokunmu",
+    email: "tosin@lendsqr.com",
+    phoneNumber: "08060780900",
+    dateJoined: "2020-04-10T10:00:00",
+    status: "Active",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 27,
+    organization: "Lendstar",
+    username: "Grace Effiom",
+    email: "grace@lendstar.com",
+    phoneNumber: "07060780922",
+    dateJoined: "2020-04-30T10:00:00",
+    status: "Blacklisted",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 28,
+    organization: "Lendsqr",
+    username: "Tosin Dokunmu",
+    email: "tosin@lendsqr.com",
+    phoneNumber: "08060780900",
+    dateJoined: "2020-04-10T10:00:00",
+    status: "Inactive",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 30,
+    organization: "Lendstar",
+    username: "Grace Effiom",
+    email: "grace@lendstar.com",
+    phoneNumber: "07060780922",
+    dateJoined: "2020-04-30T10:00:00",
+    status: "Inactive",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 31,
+    organization: "FinBank",
+    username: "Samuel John",
+    email: "samuel@finbank.com",
+    phoneNumber: "08134567890",
+    dateJoined: "2020-03-12T10:00:00",
+    status: "Pending",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 32,
+    organization: "Lendsqr",
+    username: "Adedeji Ajoke",
+    email: "adedeji@lendsqr.com",
+    phoneNumber: "08078903721",
+    dateJoined: "May 15, 2020 10:00 AM",
+    status: "Inactive",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 33,
+    organization: "Irorun",
+    username: "Debby Ogana",
+    email: "debby2@irorun.com",
+    phoneNumber: "08160780928",
+    dateJoined: "Apr 30, 2020 10:00 AM",
+    status: "Pending",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 34,
+    organization: "Lendsqr",
+    username: "Grace Effiom",
+    email: "grace@lendsqr.com",
+    phoneNumber: "07060780922",
+    dateJoined: "Apr 30, 2020 10:00 AM",
+    status: "Blacklisted",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 35,
+    organization: "Lendsqr",
+    username: "Tosin Dokunmu",
+    email: "tosin@lendsqr.com",
+    phoneNumber: "07003309226",
+    dateJoined: "Apr 10, 2020 10:00 AM",
+    status: "Pending",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 36,
+    organization: "Lendsqr",
+    username: "Grace Effiom",
+    email: "grace@lendsqr.com",
+    phoneNumber: "07060780922",
+    dateJoined: "Apr 30, 2020 10:00 AM",
+    status: "Active",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 37,
+    organization: "Lendsqr",
+    username: "Tosin Dokunmu",
+    email: "tosin@lendsqr.com",
+    phoneNumber: "08060780900",
+    dateJoined: "Apr 10, 2020 10:30 AM",
+    status: "Active",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 38,
+    organization: "Lendsqr",
+    username: "Grace Effiom",
+    email: "grace@lendsqr.com",
+    phoneNumber: "07060780922",
+    dateJoined: "Apr 30, 2020 10:00 AM",
+    status: "Blacklisted",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 39,
+    organization: "Lendsqr",
+    username: "Tosin Dokunmu",
+    email: "tosin@lendsqr.com",
+    phoneNumber: "08060780900",
+    dateJoined: "Apr 10, 2020 10:00 AM",
+    status: "Inactive",
+    hasLoan: false,
+    hasSavings: true,
+  },
+  {
+    id: 40,
+    organization: "Lendsqr",
+    username: "Grace Effiom",
+    email: "grace@lendsqr.com",
+    phoneNumber: "07060780922",
+    dateJoined: "Apr 30, 2020 10:00 AM",
+    status: "Inactive",
+    hasLoan: false,
+    hasSavings: true,
+  },
+];

@@ -1,66 +1,7 @@
-// components/AppBar.module.scss
-.appBar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    background: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-  
-   // position: fixed; // Changed from relative to fixed
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000; 
-
-  
-    .logo {
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: #213F7D;
-    }
-  
-    .searchContainer {
-      display: flex;
-      width: 400px;
-  
-      input {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid #21407d3d;
-        border-radius: 8px 0 0 8px;
-        outline: none;
-        font-size: 0.875rem;
-        color: #545F7D;
-  
-        &::placeholder {
-          color: #545F7D;
-          opacity: 0.6;
-        }
-      }
-  
-      button {
-        background: #39CDCC;
-        border: none;
-        border-radius: 0 8px 8px 0;
-        padding: 0 1rem;
-        cursor: pointer;
-        transition: background 0.2s ease;
-  
-        &:hover {
-          background: darken(#39CDCC, 10%);
-        }
-      }
-    }
-  
-    .rightSection {
+   .rightSection {
       display: flex;
       align-items: center;
       gap: 2rem;
-      position: relative; // Ensure this is relative for z-index context
-      z-index: 1001; // Higher than appBar
-    
   
       .docsLink {
         color: #213F7D;
@@ -96,7 +37,6 @@
         gap: 0.5rem;
         cursor: pointer;
         position: relative;
-        z-index: 1002;
   
         .avatar, .avatarPlaceholder {
           width: 40px;
@@ -119,20 +59,18 @@
         .dropdownIcon {
           margin-left: 0.5rem;
           transition: transform 0.2s ease;
-          
         }
   
         .dropdown {
           position: absolute;
-         top: calc(100% + 8px);
+          top: calc(100% + 8px);
           right: 0;
-          //bottom:100%;
           background: white;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
           border-radius: 8px;
           padding: 1rem;
           width: 280px;
-          z-index: 1003;
+          z-index: 1001;
           animation: fadeIn 0.2s ease;
   
           .dropdownHeader {
@@ -184,28 +122,4 @@
         }
       }
     }
-  
-    @media (max-width: 768px) {
-      padding: 1rem;
-  
-      .searchContainer, .docsLink {
-        display: none;
-      }
-  
-      .rightSection {
-        gap: 1rem;
-      }
-    }
-  
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  }
   

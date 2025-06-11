@@ -1,0 +1,112 @@
+// components/Sidebar/Sidebar.module.scss
+.sidebar {
+  width: 223px;
+  background: #ffffff;
+  padding: 20px 0;
+  height: 120vh;
+  //position: fixed;
+  left: 0;
+  top: 80;
+  //overflow-y: auto;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+
+  /* Custom scrollbar - very subtle */
+  &::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(57, 205, 204, 0.2);
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .orgSwitch {
+    padding: 0 30px;
+    margin-bottom: 41px;
+
+    button {
+      color: #213f7d;
+      font-weight: 400;
+      font-size: 16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      padding: 0;
+      cursor: pointer;
+
+      &:hover {
+        color: #39cdcc;
+      }
+    }
+  }
+
+  .section {
+    margin-bottom: 30px;
+
+    .sectionTitle {
+      color: #545f7d;
+      font-size: 12px;
+      text-transform: uppercase;
+      padding: 0 30px 10px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .menuItems {
+      display: flex;
+      flex-direction: column;
+      gap: 2px; // Reduced gap for tighter spacing
+    }
+
+    .menuItem {
+      padding: 12px 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #213f7d;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      transition: all 0.2s ease;
+      position: relative;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      border-radius: 0;
+
+      &:hover {
+        background: rgba(57, 205, 204, 0.06);
+      }
+
+      &.active {
+        background: #39cdcc;
+        color: white;
+        font-weight: 600;
+
+        .icon {
+          color: white;
+        }
+      }
+
+      .icon {
+        font-size: 16px;
+        width: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #213f7d;
+      }
+    }
+  }
+}

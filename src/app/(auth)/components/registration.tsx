@@ -26,7 +26,7 @@ export default function RegistrationForm() {
     firstName: "",
     lastName: "",
     email: "",
-    gender: "male",
+    gender: "",
     password: "",
     confirmPassword: "",
   });
@@ -137,7 +137,7 @@ export default function RegistrationForm() {
             onChange={handleChange}
             className={styles.select}
           >
-            <option value="select">Select</option>
+            <option value="gender">Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
