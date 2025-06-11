@@ -1,13 +1,11 @@
-// components/AppBar.tsx
-"use client";
-import { useState } from "react";
+
 import styles from "../../styles/header.module.scss";
 import Image from "next/image";
 import User from "./user";
 import Bell from "../../../assests/svg/notifcation.svg";
 import Search from "../../../assests/svg/search.svg";
 import Logo from "../../../assests/svg/logo.svg";
-import { Sidebar } from "./side-bar";
+
 
 export default function AppBar() {
   return (
